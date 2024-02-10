@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "tailwindcss/tailwind.css";
+import "./PasswordGenerator.css";
 
 export default function PasswordGenerator() {
+  const [progress, setProgress] = useState(25);
+  const [checked, isChecked] = useState(false);
+  const handlechange = (e) => {
+    setProgress(e.target.value);
+  };
+  const handleCheck = () => {
+    isChecked(!checked);
+  };
+  const trackStyle = {
+    background: `linear-gradient(to right, #A5FFAF ${progress}%, white ${progress}%)`,
+  };
+
   return (
     <div className="flex justify-center items-center bg-black min-h-screen">
       <div className="w-80 min-h-28 font-oswald">
@@ -14,12 +27,26 @@ export default function PasswordGenerator() {
             <p className="text-xs text-slate-300 font-light">
               character length
             </p>
-            <p className="text-light-green">18</p>
+            <p className="text-light-green">{progress}</p>
           </div>
           <form className="w-full mt-2">
-            <input type="range" className="w-full" />
+            <input
+              type="range"
+              value={progress}
+              onChange={handlechange}
+              className="w-full"
+              style={trackStyle}
+              min="1"
+              max="100"
+            />
             <div className="mt-1 flex items-center">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                onChange={handleCheck}
+                checked={checked}
+                className=""
+                // style={{ backgroundColor: checked ? "blue" : "" }}
+              />
               <label className="ml-3 text-sm text-slate-300 font-light">
                 Include Uppercase Letters
               </label>
