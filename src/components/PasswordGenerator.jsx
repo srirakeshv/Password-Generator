@@ -11,10 +11,12 @@ export default function PasswordGenerator() {
     symbols: false,
   });
 
+  // progressbar
   const handlechange = (e) => {
     setProgress(e.target.value);
   };
 
+  // checkbox
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
     setCheckboxes((prevCheckboxes) => ({
@@ -23,6 +25,7 @@ export default function PasswordGenerator() {
     }));
   };
 
+  // password generation code
   const [generatedPassword, setGeneratedPassword] = useState("");
 
   const generatePassword = () => {
@@ -46,11 +49,13 @@ export default function PasswordGenerator() {
     setGeneratedPassword(password);
   };
 
+  // sumbit form event
   const handleSubmit = (e) => {
     e.preventDefault();
     generatePassword();
   };
 
+  // progressbar color chnage
   const trackStyle = {
     background: `linear-gradient(to right, #A5FFAF ${progress}%, white ${progress}%)`,
   };
